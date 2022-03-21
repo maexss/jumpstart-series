@@ -41,9 +41,11 @@ export default function Home({ isConnected, products }) {
 export async function getServerSideProps(context) {
   const client = await clientPromise;
   const isConnected = await client.isConnected();
-  const db = client.db("store");
+  const db = client.db("e-commerce");
   const collection = db.collection("products");
   const products = await collection.find({}).toArray();
+  console.log("JSON.parse(JSON.stringify(products))");
+
 
   return {
     props: {
